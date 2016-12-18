@@ -1,0 +1,18 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Batch\\": "app/batch",
+            "Services\\": "app/services",
+            "Dao\\": "app/dao",
+            "Models\\": "app/models"
+        }
+    },
+    "require": {
+        "slim/slim": "2.*",
+	"slim/views": "0.1.*",
+	"twig/twig": "1.18.*",
+        "predis/predis": "~1.0",
+        "league/flysystem": "0.2.*"
+    }
+}
+

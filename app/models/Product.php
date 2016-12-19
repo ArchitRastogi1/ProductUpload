@@ -12,7 +12,7 @@ class Product {
         $this->productId = $productDetails['productId'];
         $this->productPrice = $productDetails['productPrice'];
         $this->productName = $productDetails['productName'];
-        $this->imageIds = "66.jpg";//explode(",",$productDetails['imageIds']);
+        $this->imageIds = $productDetails['imageIds'];
         return $this;
     }
 

@@ -26,7 +26,7 @@ $app->post('/posts/productDetails', function() use ($app){
    $productData = $app->request->post();
    $productObj = $product->setProductProperties($productData);
    $response = $productDetailsService->saveProductDetails($productObj);
-   return $response;
+   echo $response;die;
 });
 
 function getFileData() {

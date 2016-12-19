@@ -27,7 +27,6 @@ class ProductImageService {
     
     //this method gets data back from redis and  saves resized images in db 
     public function saveResizedImages($img) {
-        
         $imageData = $this->redisService->getImageFromRedis($img);
         $this->fileService->saveFileInFolder($img, $imageData); //saving redis image data in a file, for resizing purpose
         $image_256 = $this->getResizeImage(Constants::IMAGE_256,$img);
@@ -51,7 +50,8 @@ class ProductImageService {
         } else{
             $imageData = $this->imageDao->getImage($imageId,'image_512');
         }
-        echo '<img src="data:image/jpeg;base64,' . base64_encode($imageData) . '"/>';
+        $base64ImgData = base64_encode($imageData);
+        return "data:image/jpeg;base64,$base64ImgData";
     }
     
 }

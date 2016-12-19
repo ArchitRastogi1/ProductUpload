@@ -12,14 +12,13 @@
         <td>{{row.productName}}</td>
         <td>{{row.productPrice}}</td>
         <td>
-        {% for img in row.images %}
-        
-            <img src="http://localhost:8888/public/gets/getImage?image_id={{img}}&size=256" />
+        {% for img in row.image256 %}
+            <img src="{{img}}" />
         {% endfor %}
         </td>
         <td>
-        {% for img in row.images %} 
-            <img src="http://localhost:8888/public/gets/getImage?image_id={{img}}&size=512" />
+        {% for img in row.image512 %} 
+            <img src="{{img}}" />
         {% endfor %}
         </td>
     </tr>

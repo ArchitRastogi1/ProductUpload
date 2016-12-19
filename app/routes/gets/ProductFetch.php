@@ -14,5 +14,7 @@ $app->get('/gets/getImage', function() use ($app) {
     $imageId = $app->request->get('image_id');
     $size = $app->request->get('size');
     $productImageService = new ProductImageService;
-    $productImageService->getImage($imageId,$size);
+    $response = $productImageService->getImage($imageId,$size);
+    var_dump($response);die;
+    return $response;
 });

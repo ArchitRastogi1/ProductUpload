@@ -3,16 +3,19 @@
 namespace Services;
 use Dao\ProductDetailsDao;
 use Dao\ImageDao;
+use Models\Constants;
 
 
 class ProductDataService {
     
     private $productDetailsDao;
     private $imageDao;
+    private $productImageService;
     
     public function __construct() {
         $this->productDetailsDao = new ProductDetailsDao;
         $this->imageDao = new ImageDao;
+        $this->productImageService = new ProductImageService;
         
     }
     
@@ -24,9 +27,9 @@ class ProductDataService {
             $imageIdsArr = explode(",", $productDetail['imageIds']);
             $count = 0;
             foreach($imageIdsArr as $img) {
-                $allProductDetailsArr[$key]['image256'][$count] = base64_encode($formattedImageData[$img]['image_256']);
-                $allProductDetailsArr[$key]['image512'][$count] = base64_encode($formattedImageData[$img]['image_512']);
-                $allProductDetailsArr[$key]['images'][$count] = $img;
+                $imgIds = explode('.',$img);
+                $allProductDetailsArr[$key]['image256'][$count] = $this->productImageService->getImage($imgIds[0], Constants::IMAGE_256);
+                $allProductDetailsArr[$key]['image512'][$count] = $this->productImageService->getImage($imgIds[0], Constants::IMAGE_512);;
                 $count++;
             }
         }

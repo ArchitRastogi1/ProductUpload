@@ -22,7 +22,8 @@ class ProductImageService {
     public function saveImageAndGenerateId($fileDataArr) {
         $imageKey = $this->imageDao->generateImageKey($fileDataArr['ext']);
         $this->redisService->setImageToRedis($imageKey.".".$fileDataArr['ext'],$fileDataArr['content']);
-        Constants::PHP_EXEC_PATH.'../batch/SaveImageAsynchronous.php --imageKey='.$imageKey;
+        $command = Constants::PHP_EXEC_PATH.'../batch/SaveImageAsynchronous.php --imageKey='.$imageKey;
+        exec($command);
         return $imageKey.".".$fileDataArr['ext'];
     }
     

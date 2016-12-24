@@ -16,10 +16,6 @@ class ProductDetailsService {
     
     //this method saves product details and resized images in db
     public function saveProductDetails(Product $productObj) {
-        $imageIds = explode(",",$productObj->getImageIds());
-        foreach($imageIds as $img) {
-            $this->productImageService->saveResizedImages($img);
-        }
         $this->productDetailsDao->storeProductDetails($productObj);
         return 'Product Details Uploaded SuccessFully';
     }
